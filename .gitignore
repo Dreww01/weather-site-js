@@ -1,0 +1,23 @@
+# Node.js dependencies
+node_modules/
+
+# Build artifacts
+build/
+dist/
+
+# Logs
+logs/
+*.log
+
+# IDE files
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Miscellaneous
+.env
+coverage/
+tmp/1
