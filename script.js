@@ -4,12 +4,11 @@ const searchBox = document.querySelector(".search input");
 const searchButton = document.querySelector(".search button");
 const weatherIcon = document.querySelector(".weather-icon");
 
-const API_KEY = " "; //"your-api-key-here";
-const API_URL =
-  "https://api.openweathermap.org/data/2.5/weather?units=metric&q=";
+// Using Netlify function to proxy API calls (API key is secure on server side)
+const API_URL = "/.netlify/functions/weather?city=";
 
 async function getWeather(city) {
-  const response = await fetch(API_URL + city + `&appid=${API_KEY}`);
+  const response = await fetch(API_URL + encodeURIComponent(city));
 
   // to make sure the error message is only displayed when city id not found.
   if (response.status == 404) {
