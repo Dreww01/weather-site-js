@@ -2,7 +2,7 @@
 node_modules/
 
 # Netlify function dependencies
-netlify/functions/node_modules/
+config/netlify/functions/node_modules/
 
 # Build artifacts
 build/

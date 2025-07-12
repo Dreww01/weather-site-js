@@ -2,11 +2,11 @@
 
 # Install Netlify function dependencies
 echo "Installing Netlify function dependencies..."
-cd netlify/functions
+cd config/netlify/functions
 npm install --production
-cd ../..
+cd ../../..
 
 # Verify the build
 echo "Build completed successfully!"
-echo "Static files are ready for deployment."
+echo "Static files are ready for deployment from src/ directory."
 echo "Netlify functions are configured and ready." 

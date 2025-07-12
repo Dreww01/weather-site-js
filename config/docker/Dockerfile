@@ -5,13 +5,13 @@ FROM nginx:alpine
 WORKDIR /usr/share/nginx/html
 
 # Copy static files (HTML, CSS, JS, images)
-COPY index.html .
-COPY style.css .
-COPY script.js .
-COPY images/ ./images/
+COPY src/index.html .
+COPY src/style.css .
+COPY src/script.js .
+COPY src/images/ ./images/
 
 # Copy nginx configuration for better performance
-COPY nginx.conf /etc/nginx/nginx.conf
+COPY config/nginx/nginx.conf /etc/nginx/nginx.conf
 
 # Create a non-root user for security
 RUN addgroup -g 1001 -S nodejs && \

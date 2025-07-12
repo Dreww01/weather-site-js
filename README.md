@@ -27,27 +27,34 @@ A modern, responsive weather application built with vanilla JavaScript that prov
 
 ```
 weather-site-js/
-├── index.html              # Main HTML file
-├── style.css               # CSS styles and responsive design
-├── script.js               # JavaScript functionality and API integration
-├── images/                 # Weather icons and UI elements
-│   ├── clear.png           # Clear sky icon
-│   ├── clouds.png          # Cloudy weather icon
-│   ├── drizzle.png         # Drizzle weather icon
-│   ├── humidity.png        # Humidity indicator icon
-│   ├── mist.png            # Mist/fog weather icon
-│   ├── raining.png         # Rain weather icon
-│   ├── search.png          # Search button icon
-│   └── wind.png            # Wind speed indicator icon
-├── netlify/                # Netlify serverless functions
-│   ├── functions/
-│   │   ├── weather.js      # Weather API proxy function
-│   │   └── package.json    # Function dependencies
-│   └── netlify.toml        # Netlify configuration
-├── Dockerfile              # Docker container configuration
-├── docker-compose.yml      # Docker orchestration
-├── nginx.conf              # Nginx server configuration
-├── .dockerignore           # Docker build exclusions
+├── src/                    # Application source code
+│   ├── index.html          # Main HTML file
+│   ├── style.css           # CSS styles and responsive design
+│   ├── script.js           # JavaScript functionality and API integration
+│   └── images/             # Weather icons and UI elements
+│       ├── clear.png       # Clear sky icon
+│       ├── clouds.png      # Cloudy weather icon
+│       ├── drizzle.png     # Drizzle weather icon
+│       ├── humidity.png    # Humidity indicator icon
+│       ├── mist.png        # Mist/fog weather icon
+│       ├── raining.png     # Rain weather icon
+│       ├── search.png      # Search button icon
+│       └── wind.png        # Wind speed indicator icon
+├── config/                 # Configuration files
+│   ├── docker/             # Docker configuration
+│   │   ├── Dockerfile      # Container configuration
+│   │   ├── docker-compose.yml # Container orchestration
+│   │   ├── .dockerignore   # Docker build exclusions
+│   │   └── nginx.conf      # Nginx server configuration
+│   └── netlify/            # Netlify configuration
+│       ├── functions/      # Serverless functions
+│       │   ├── weather.js  # Weather API proxy function
+│       │   └── package.json # Function dependencies
+│       └── netlify.toml    # Netlify build settings
+├── docs/                   # Documentation
+│   └── NETLIFY_DEPLOYMENT.md # Deployment guide
+├── package.json            # Project metadata and scripts
+├── build.sh                # Build script
 ├── .gitignore              # Git ignore rules
 └── README.md               # Project documentation
 ```
@@ -82,23 +89,26 @@ weather-site-js/
 4. **Run the Application**
 
    **Option A: Simple Local Server**
-   - Open `index.html` in your web browser
+   - Open `src/index.html` in your web browser
    - Or serve it using a local server:
    ```bash
+   # Using npm scripts (recommended)
+   npm run dev
+   
    # Using Python 3
-   python -m http.server 8000
+   cd src && python -m http.server 8000
    
    # Using Node.js (if you have http-server installed)
-   npx http-server
+   cd src && npx http-server
    ```
 
    **Option B: Docker (Recommended)**
    ```bash
    # Build and run with Docker Compose
-   docker-compose up --build
+   docker-compose -f config/docker/docker-compose.yml up --build
    
    # Or build and run manually
-   docker build -t weather-app .
+   docker build -t weather-app -f config/docker/Dockerfile .
    docker run -p 3000:80 weather-app
    
    # Access at http://localhost:3000
@@ -254,10 +264,10 @@ This project is open source and available under the [MIT License](LICENSE).
 ### Quick Start
 ```bash
 # Build and run with Docker Compose
-docker-compose up --build
+docker-compose -f config/docker/docker-compose.yml up --build
 
 # Build image manually
-docker build -t weather-app .
+docker build -t weather-app -f config/docker/Dockerfile .
 
 # Run container
 docker run -d -p 3000:80 --name weather-app weather-app
@@ -278,7 +288,7 @@ docker exec -it weather-app sh
 ### Production Deployment
 ```bash
 # Build for production
-docker build -t weather-app:latest .
+docker build -t weather-app:latest -f config/docker/Dockerfile .
 
 # Tag for registry
 docker tag weather-app:latest yourusername/weather-app:latest
@@ -293,10 +303,10 @@ docker run -d -p 80:80 --restart unless-stopped --name weather-app yourusername/
 ### Docker Compose Production
 ```bash
 # Run with production profile
-docker-compose --profile production up -d
+docker-compose -f config/docker/docker-compose.yml --profile production up -d
 
 # Scale the application
-docker-compose up -d --scale weather-app=3
+docker-compose -f config/docker/docker-compose.yml up -d --scale weather-app=3
 ```
 
 ## 📞 Support

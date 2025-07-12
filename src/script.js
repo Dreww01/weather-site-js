@@ -51,4 +51,4 @@ searchBox.addEventListener("keydown", (e) => {
   }
 });
 
-getWeather();
+getWeather(); 

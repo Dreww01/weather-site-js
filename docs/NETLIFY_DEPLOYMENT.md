@@ -27,7 +27,7 @@ This guide will help you deploy your weather app to Netlify with automatic API k
 Netlify will automatically detect your settings from `netlify.toml`, but verify:
 
 - **Build command:** `npm run build` (or leave empty for static site)
-- **Publish directory:** `.` (root directory)
+- **Publish directory:** `src` (source directory)
 - **Node version:** `18` (automatically set)
 
 ### Step 3: Set Environment Variables

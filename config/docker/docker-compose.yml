@@ -2,7 +2,9 @@ version: '3.8'
 
 services:
   weather-app:
-    build: .
+    build:
+      context: ../..
+      dockerfile: config/docker/Dockerfile
     ports:
       - "3000:80"
     container_name: weather-app

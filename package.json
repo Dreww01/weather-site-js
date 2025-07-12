@@ -2,11 +2,11 @@
   "name": "weather-app",
   "version": "1.0.0",
   "description": "A modern weather application with real-time data",
-  "main": "index.html",
+  "main": "src/index.html",
   "scripts": {
     "build": "bash build.sh",
-    "dev": "python -m http.server 8000",
-    "start": "python -m http.server 8000"
+    "dev": "cd src && python -m http.server 8000",
+    "start": "cd src && python -m http.server 8000"
   },
   "keywords": [
     "weather",
