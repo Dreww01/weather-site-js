@@ -1,6 +1,6 @@
 [build]
   publish = "src"
-  functions = "config/netlify/functions"
+  functions = "netlify/functions"
 
 [build.environment]
   NODE_VERSION = "18"

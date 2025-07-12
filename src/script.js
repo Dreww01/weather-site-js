@@ -4,11 +4,24 @@ const searchBox = document.querySelector(".search input");
 const searchButton = document.querySelector(".search button");
 const weatherIcon = document.querySelector(".weather-icon");
 
-// Using Netlify function to proxy API calls (API key is secure on server side)
-const API_URL = "/.netlify/functions/weather?city=";
+// API configuration - works for both local development and production
+const isLocalDevelopment = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+const API_URL = isLocalDevelopment 
+  ? "https://api.openweathermap.org/data/2.5/weather?units=metric&q="
+  : "/.netlify/functions/weather?city=";
+
+// For local development, you'll need to add your API key here
+const LOCAL_API_KEY = "YOUR_API_KEY_HERE"; // Replace with your actual API key for local testing
 
 async function getWeather(city) {
-  const response = await fetch(API_URL + encodeURIComponent(city));
+  let url;
+  if (isLocalDevelopment) {
+    url = API_URL + encodeURIComponent(city) + "&appid=" + LOCAL_API_KEY;
+  } else {
+    url = API_URL + encodeURIComponent(city);
+  }
+  
+  const response = await fetch(url);
 
   // to make sure the error message is only displayed when city id not found.
   if (response.status == 404) {

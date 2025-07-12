@@ -1,0 +1,9 @@
+{
+  "name": "weather-function",
+  "version": "1.0.0",
+  "description": "Netlify function for weather API proxy",
+  "main": "weather.js",
+  "dependencies": {
+    "node-fetch": "^2.6.7"
+  }
+} 

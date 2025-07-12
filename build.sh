@@ -2,9 +2,9 @@
 
 # Install Netlify function dependencies
 echo "Installing Netlify function dependencies..."
-cd config/netlify/functions
+cd netlify/functions
 npm install --production
-cd ../../..
+cd ../..
 
 # Verify the build
 echo "Build completed successfully!"
