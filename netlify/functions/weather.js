@@ -22,6 +22,14 @@ exports.handler = async function(event, context) {
   try {
     // Your API key is now secure on the server side
     const API_KEY = process.env.WEATHER_API_KEY;
+    
+    if (!API_KEY) {
+      return {
+        statusCode: 500,
+        body: JSON.stringify({ error: 'Weather API key not configured' })
+      };
+    }
+    
     const API_URL = `https://api.openweathermap.org/data/2.5/weather?units=metric&q=${city}&appid=${API_KEY}`;
 
     const response = await fetch(API_URL);

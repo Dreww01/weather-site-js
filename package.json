@@ -1,0 +1,23 @@
+{
+  "name": "weather-app",
+  "version": "1.0.0",
+  "description": "A modern weather application with real-time data",
+  "main": "index.html",
+  "scripts": {
+    "build": "bash build.sh",
+    "dev": "python -m http.server 8000",
+    "start": "python -m http.server 8000"
+  },
+  "keywords": [
+    "weather",
+    "api",
+    "javascript",
+    "netlify",
+    "docker"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  }
+} 
